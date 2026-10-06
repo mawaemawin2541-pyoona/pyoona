@@ -147,51 +147,11 @@ button.p:not(.up),.lbp,.nfld>span:not(:empty):not(.nb),#rot,#delp,.opt[data-t=me
 }
 
 button,.btn,select,input,textarea,.lbp,label,.opt p{font-weight:500}
-
-/* ===== มือถือ: ปุ่มเมนูอยู่บนขวาสุด กดแล้วลิ้นชักฟังก์ชันเลื่อนออกมาจากซ้าย ===== */
-#menuBtn,#scrim,#tabs .dh{display:none}
-@media(max-width:760px){
-header{justify-content:flex-start;flex-wrap:wrap;gap:6px 8px;padding:8px 10px}
-header h1{flex:1 1 0;min-width:0;font-size:16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-#menuBtn{display:inline-flex;align-items:center;justify-content:center;flex:none;width:44px;height:44px;padding:0;font-size:24px;line-height:1;background:var(--ac);color:#fff;border-color:var(--ac);border-radius:10px}
-#hbtns{display:flex;flex:1 1 100%;gap:6px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
-#hbtns::-webkit-scrollbar{display:none}
-#hbtns button{flex:none;white-space:nowrap;padding:6px 10px;font-size:14px}
-#app{flex-direction:column;align-items:stretch}
-#side{width:auto;align-self:auto}
-#tabs{position:fixed;top:0;left:0;bottom:0;width:min(84vw,320px);max-height:none;z-index:200;background:var(--card);border-right:1px solid var(--bd);box-shadow:4px 0 24px #0005;padding:calc(env(safe-area-inset-top,0px) + 8px) 12px calc(env(safe-area-inset-bottom,0px) + 16px);flex-direction:column;flex-wrap:nowrap;gap:6px;overflow-y:auto;overscroll-behavior:contain;transform:translateX(-105%);visibility:hidden;transition:transform .25s ease,visibility 0s .25s}
-body.menu-open #tabs{transform:none;visibility:visible;transition:transform .25s ease}
-#tabs button{width:100%;min-height:48px;font-size:16px;padding:10px 14px;text-align:left;white-space:normal}
-#tabs .dh{display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:1;background:var(--card);padding:4px 0 8px;font-size:17px}
-#tabs .dh button{width:44px;min-height:44px;padding:0;flex:none;text-align:center;font-size:18px}
-#scrim{display:block;position:fixed;inset:0;z-index:190;background:#0006;opacity:0;pointer-events:none;transition:opacity .25s}
-body.menu-open #scrim{opacity:1;pointer-events:auto}
-body.menu-open{overflow:hidden}
-.opt{margin:8px 8px 0;padding:10px}
-#wrap{padding:0 8px 24px}
-#thumbs{margin:8px 8px 0}
-#nav{gap:6px;padding:8px 4px}
-#nav button{min-height:40px;min-width:40px}
-#nav>span[style]{width:4px!important}
-}
-
-/* ===== มือถือ: แถบเครื่องมือซ่อนไว้ กดปุ่มกลม Action เพื่อเปิดเป็นแผงด้านล่าง ===== */
-#actBtn{display:none}
-@media(max-width:760px){
-#nav{top:var(--hh,0px)}
-.opt.on{display:none}
-body.act-open .opt.on{display:flex!important;position:fixed!important;left:0!important;right:0!important;top:auto!important;bottom:0!important;width:auto!important;max-width:none!important;margin:0!important;max-height:62vh!important;overflow-y:auto;overflow-x:hidden;z-index:150;border-radius:16px 16px 0 0;border-width:1px 0 0;box-shadow:0 -6px 24px #0004;padding:14px 12px calc(env(safe-area-inset-bottom,0px) + 88px)!important;overscroll-behavior:contain}
-#actBtn{display:flex;align-items:center;justify-content:center;position:fixed;right:16px;bottom:calc(env(safe-area-inset-bottom,0px) + 16px);width:64px;height:64px;padding:0;border-radius:50%;border:0;background:#e97132;color:#fff;font-size:13px;font-weight:700;line-height:1;z-index:160;box-shadow:0 4px 14px #0005;touch-action:manipulation}
-#actBtn .a2{display:none;font-size:24px}
-body.act-open #actBtn{background:#444}
-body.act-open #actBtn .a1{display:none}
-body.act-open #actBtn .a2{display:inline}
-}
 </style></head><body>
-<header><h1>📄 PDF Editor <span style="color:#ff0000;font-size:12px;font-weight:400">Powered by พี Yoona</span></h1><button type="button" id="menuBtn" aria-label="เมนูฟังก์ชัน" aria-expanded="false" aria-controls="tabs">☰</button>
-<div id="hbtns"><button class="p up" onclick="document.getElementById('f').click()">Upload File</button><input id="f" type="file" accept="application/pdf,.pdf" style="position:absolute;width:1px;height:1px;opacity:0;pointer-events:none">
-<button id="undo">↶ ย้อนกลับ</button><button id="redo">↷ ไปข้างหน้า</button><button id="orig">⟲ คืนค่าไฟล์ต้นฉบับ</button><button id="reset">🔄 Reset All</button><button id="save" class="p">บันทึก PDF</button><button id="print" class="p">🖨 Print</button></div></header>
-<button type="button" id="actBtn" aria-label="แสดงแถบเครื่องมือ" aria-expanded="false"><span class="a1">Action</span><span class="a2">✕</span></button><div id="scrim"></div><div id="app"><div id="side"><aside id="tabs"><div class="dh"><b>ฟังก์ชันทั้งหมด</b><button type="button" id="menuX" aria-label="ปิดเมนู">✕</button></div></aside><div id="imgs"></div></div><main id="main">
+<header><h1>📄 PDF Editor <span style="color:#ff0000;font-size:12px;font-weight:400">Powered by พี Yoona</span></h1>
+<button class="p up" onclick="document.getElementById('f').click()">Upload File</button><input id="f" type="file" accept="application/pdf,.pdf" style="position:absolute;width:1px;height:1px;opacity:0;pointer-events:none">
+<button id="undo">↶ ย้อนกลับ</button><button id="redo">↷ ไปข้างหน้า</button><button id="orig">⟲ คืนค่าไฟล์ต้นฉบับ</button><button id="reset">🔄 Reset All</button><button id="save" class="p">บันทึก PDF</button><button id="print" class="p">🖨 Print</button></header>
+<div id="app"><div id="side"><aside id="tabs"></aside><div id="imgs"></div></div><main id="main">
 
 <input id="eb" type="color" value="#ffffff" hidden>
 <div class="opt" data-t="text edit"><div class="rw"><div class="grp" data-h="ข้อความ"><span class="lbp">Font</span> <select id="fsel"><option value="auto">ตามต้นฉบับในไฟล์</option><option>Noto Sans Thai</option><option>Sarabun</option><option>Prompt</option><option>Kanit</option><option>Mitr</option><option>Noto Serif Thai</option><option>Arial</option><option>Times New Roman</option><option>Courier New</option></select> <span class="lbp">Size</span> <span class="cb"><input id="fsz" type="text" inputmode="decimal" autocomplete="off" placeholder="ตามต้นฉบับ"><button type="button" id="fszb" aria-label="เลือกขนาด">▾</button><div id="fszl" hidden><div data-v="">ตามต้นฉบับ</div><div data-v="6">6</div><div data-v="7">7</div><div data-v="8">8</div><div data-v="9">9</div><div data-v="10">10</div><div data-v="11">11</div><div data-v="12">12</div><div data-v="14">14</div><div data-v="16">16</div><div data-v="18">18</div><div data-v="20">20</div><div data-v="22">22</div><div data-v="24">24</div><div data-v="28">28</div><div data-v="32">32</div><div data-v="36">36</div><div data-v="40">40</div><div data-v="48">48</div><div data-v="56">56</div><div data-v="64">64</div><div data-v="72">72</div></div></span> <button type="button" id="fszup" title="Increase Font Size" aria-label="Increase Font Size">A+</button><button type="button" id="fszdn" title="Decrease Font Size" aria-label="Decrease Font Size">A−</button><i class="br"></i> สี <input id="fcl" type="color" value="#000000"><label><input type="checkbox" id="fca" checked> สีตามต้นฉบับ</label> <button id="fload" class="p" type="button">ดึง Font อัตโนมัติ</button></div><div class="grp" style="display:none;flex:1 1 300px;flex-direction:column;align-items:flex-start;flex-wrap:nowrap;gap:6px" data-h="การจัดวาง"><label><input type="checkbox" id="fsn" checked> จัดบรรทัดตามข้อความเดิม</label><label><input type="checkbox" id="fjn" checked> รวมข้อความที่ติดกันเป็นแถบเดียว</label><label><input type="checkbox" id="fg" checked> 📏 เส้นวัดตอนย้ายกล่อง</label></div><div class="grp" id="fdg" data-h="ลบ"><button type="button" id="fdel" title="ลบข้อความจากไฟล์ PDF: เปิดโหมดแล้วคลิกข้อความ หรือลากคลุมพื้นที่" aria-label="ลบข้อความจากไฟล์ PDF"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 11v6M14 11v6"/></svg> ลบข้อความ</button></div><div class="grp" id="ckg" data-h="☑ วางเครื่องหมาย"><span class="lbp">เครื่องหมาย</span> <select id="ckt"><option value="">ปิด (คลิกเพื่อแก้ข้อความ)</option><option value="cb">☑ ติ๊กในกล่อง</option><option value="bx">☐ กล่องว่าง</option><option value="ck">✔ เครื่องหมายถูก</option><option value="xb">☒ กากบาทในกล่อง</option><option value="xx">✘ กากบาท</option></select><i class="br"></i> ขนาด <input id="cks" type="range" min="8" max="48" value="14"> สี <input id="ckc" type="color" value="#000000"></div></div><span id="fi"></span></div>
@@ -1373,18 +1333,4 @@ function addCmAnnot(D,pg,m){
   if(document.fonts){document.fonts.ready.then(sched);document.fonts.addEventListener&&document.fonts.addEventListener('loadingdone',sched)}
   sched();
 });
-</script><script>
-(function(){
-  var B=document.body,mb=document.getElementById('menuBtn'),tb=document.getElementById('tabs'),ab=document.getElementById('actBtn');
-  function act(o){B.classList.toggle('act-open',o);ab.setAttribute('aria-expanded',o?'true':'false');dispatchEvent(new Event('resize'))}
-  function menu(o){if(o)act(false);B.classList.toggle('menu-open',o);mb.setAttribute('aria-expanded',o?'true':'false')}
-  mb.addEventListener('click',function(){menu(!B.classList.contains('menu-open'))});
-  ab.addEventListener('click',function(){act(!B.classList.contains('act-open'))});
-  document.getElementById('scrim').addEventListener('click',function(){menu(false)});
-  document.getElementById('menuX').addEventListener('click',function(){menu(false)});
-  tb.addEventListener('click',function(e){if(e.target.closest('button[data-t]')){menu(false);act(false)}});
-  addEventListener('keydown',function(e){if(e.key==='Escape'){menu(false);act(false)}});
-  var mq=matchMedia('(min-width:761px)');
-  (mq.addEventListener?mq.addEventListener.bind(mq,'change'):mq.addListener.bind(mq))(function(e){if(e.matches){menu(false);act(false)}});
-})();
 </script></body></html>
