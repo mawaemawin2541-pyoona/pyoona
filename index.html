@@ -565,6 +565,11 @@ $('reset').onclick=async()=>{
     else el.value=el.defaultValue;
   });
   const bx=$('dlbox');if(bx)bx.remove();$('fi').textContent='';$('imgs').innerHTML='';
+  // ล้างรายการลายเซ็น (เครื่องมือ 1) และรูปที่เลือกไว้ (เครื่องมือ 2)
+  sigs.length=0;sgRender();sgClear();sx.clearRect(0,0,sc.width,sc.height);
+  {const t=$('sgtabs')&&$('sgtabs').querySelector('button[data-k="0"]');if(t)t.click()}
+  imgList=[];imgSel=0;$('im').value='';
+  $('imp').innerHTML='<span>รูปที่เลือกจะแสดงตรงนี้ — ลากรูปลงบนหน้าเพื่อวาง (เลือกได้หลายรูป)</span>';
   setTool('text');pi=0;
   // remove the uploaded file and everything derived from it
   bytes=null;orig=null;pdf=null;pageObj=null;items=[];tstyles={};vp=null;pi=0;zm=1;applyZoom();buildThumbs();
@@ -949,9 +954,9 @@ function renderMark(a){
     $('fszl').hidden=true;
   };
   $('fszup').onmousedown=$('fszdn').onmousedown=e=>e.preventDefault();
-  let ckTm=0;$('ckt').addEventListener('change',()=>{clearTimeout(ckTm);if($('ckt').value)ckTm=setTimeout(()=>{$('ckt').value=''},10000)});
+  let ckTm=0;$('ckt').addEventListener('change',()=>{clearTimeout(ckTm);if($('ckt').value){if(delMode)setDel(false);ckTm=setTimeout(()=>{$('ckt').value=''},10000)}});
   $('fszup').onclick=()=>step(1);$('fszdn').onclick=()=>step(-1);
-  $('fdel').onclick=()=>{if(ed)closeEd();setDel(!delMode)};
+  $('fdel').onclick=()=>{if(ed)closeEd();setDel(!delMode);if(delMode){clearTimeout(ckTm);$('ckt').value=''}};
 })();
 
 // ===== ฟอนต์ในเครื่องคอม: Chrome/Edge ดึงรายชื่อฟอนต์ที่ติดตั้งไว้ (ต้องกดอนุญาต) ; เบราว์เซอร์อื่นให้เลือกไฟล์ฟอนต์ (.ttf/.otf/.woff) แทน
